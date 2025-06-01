@@ -1,5 +1,10 @@
+import AppBarComponent from "../components/AppBarComponent";
+
 export default function HomePage(){
     return(
-        <h1>About Page</h1>
+        <div>
+            <AppBarComponent/>
+            <h1>About Page</h1>
+        </div> 
     )
 }

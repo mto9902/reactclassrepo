@@ -2,6 +2,20 @@ import { useState, useEffect } from "react"
 import { Box, TextField } from "@mui/material"
 import { Button } from "@mui/material"
 import {Stack} from "@mui/material"
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import AppBarComponent from "../components/AppBarComponent";
+
 
 export default function HomePage(){
     const[name, setName] = useState('Min')
@@ -45,55 +59,72 @@ export default function HomePage(){
     };    
 
     return(
-        <div>
-        <h1>Hello, {name}</h1>
-        <button onClick={()=>setName('Clicked')}>Clicked</button>
-        <button onClick={()=>changeName()}>Extra</button>
-        <button onClick={()=>[setName('Twice'),console.log("Name",name)]}>Twice</button>
+        <>
+    <AppBarComponent />
 
-        <br/>
+    <Container maxWidth={false}>
+      <Box sx={{ mt: 4, textAlign: 'center', maxWidth: '800px' }}>
+        <Typography variant="h4" gutterBottom>
+          Hello Home Page
+        </Typography>
 
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={(e) => setName(e.target.value)}/>
+        <Typography variant="h3">Hello, {name}</Typography>
 
-        <br/>
-
-        <Stack direction={'column'}>
-        <Button variant="text" onClick={()=>alert("Your name is : " + name)}>Change Name</Button>
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 2 }}>
+          <Button variant="contained" onClick={() => setName('Clicked')}>Clicked</Button>
+          <Button variant="contained" onClick={changeName}>Extra</Button>
+          <Button variant="contained" onClick={() => [setName('Twice'), console.log("Name", name)]}>Twice</Button>
         </Stack>
 
-        <br/>
+        <Box sx={{ mt: 2}}>
+          <TextField
+            fullWidth
+            id="outlined-basic"
+            label="Outlined"
+            variant="outlined"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Box>
 
-        <br/>
+        <Button variant="text" sx={{ mt: 1 }} onClick={() => alert("Your name is : " + name)}>
+          Change Name
+        </Button>
 
-        <TextField
-        label="Number 1"
-        variant="outlined"
-        type="number"
-        value={num1}
-        onChange={(e) => setNum1(e.target.value)}
-        />
+        <Box sx={{ mt: 4 }}>
+          <TextField
+            fullWidth
+            label="Number 1"
+            variant="outlined"
+            type="number"
+            value={num1}
+            onChange={(e) => setNum1(e.target.value)}
+          />
+        </Box>
 
-        <br/>
+        <Box sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            label="Number 2"
+            variant="outlined"
+            type="number"
+            value={num2}
+            onChange={(e) => setNum2(e.target.value)}
+          />
+        </Box>
 
-        <TextField
-        label="Number 2"
-        variant="outlined"
-        type="number"
-        value={num2}
-        onChange={(e) => setNum2(e.target.value)}
-        />   
+        <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 2 }}>
+          <Button variant="outlined" onClick={() => calculate('+')}>+</Button>
+          <Button variant="outlined" onClick={() => calculate('-')}>-</Button>
+          <Button variant="outlined" onClick={() => calculate('x')}>×</Button>
+          <Button variant="outlined" onClick={() => calculate('/')}>÷</Button>
+        </Stack>
 
-        <br/>
-
-        <button onClick={() => calculate('+')}>+</button>
-            <button onClick={() => calculate('-')}>-</button>
-            <button onClick={() => calculate('x')}>x</button>
-            <button onClick={() => calculate('/')}>/</button>
-
-            <h3>Result: {result}</h3>
-        
-     
-        </div>
+        <Typography variant="h6" sx={{ mt: 3 }}>
+          Result: {result}
+        </Typography>
+      </Box>
+    </Container>
+  </>
 
         
     )
